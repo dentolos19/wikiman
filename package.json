@@ -56,24 +56,19 @@
   },
   "scripts": {
     "vscode:prepublish": "esbuild src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode --minify",
-    "pretest": "bun run compile && bun run lint",
     "watch": "tsc -watch -p .",
     "compile": "tsc -p .",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test",
     "pack": "vsce pack --no-dependencies --out out/extension.vsix"
   },
   "dependencies": {
     "octokit": "^3.2.2"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
     "@types/node": "^25.3.3",
     "@types/vscode": "^1.109.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.3",
     "eslint": "^8.57.1",

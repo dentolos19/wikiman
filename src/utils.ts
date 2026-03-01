@@ -14,9 +14,10 @@ export function executeTerminalCommands(...commands: string[]) {
 
 export function executeShellCommands(...commands: string[]) {
   return new Promise<string>((resolve, reject) => {
-    cp.exec(commands.join(" && "), (err, stdout, _) => {
+    cp.exec(commands.join(" && "), (err, stdout, stderr) => {
       if (err) {
-        reject(err);
+        reject(new Error(stderr || err.message));
+        return;
       }
       resolve(stdout);
     });
@@ -24,11 +25,11 @@ export function executeShellCommands(...commands: string[]) {
 }
 
 // Example:
-//   origin	https://github.com/dentolos19/wiki-editor.wiki.git (fetch)
-//   origin	https://github.com/dentolos19/wiki-editor.wiki.git (push)
+//   origin	https://github.com/dentolos19/wikiman.wiki.git (fetch)
+//   origin	https://github.com/dentolos19/wikiman.wiki.git (push)
 //
 // Output:
-//   dentolos19/wiki-editor.wiki
+//   dentolos19/wikiman.wiki
 export function matchRepoFullName(url: string) {
   const match = url.match(/https:\/\/github\.com\/(.*\/.*)\.git \(push\)/);
   if (!match) {

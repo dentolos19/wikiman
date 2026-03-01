@@ -1,17 +1,18 @@
 {
-  "name": "wiki-editor",
-  "displayName": "Wiki Editor",
+  "name": "wikiman",
+  "displayName": "Wikiman",
   "publisher": "dentolos19",
   "description": "An easy way to quickly edit wikis locally inside your editor!",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "icon": "public/icon.png",
   "main": "./out/extension.js",
+  "packageManager": "bun@1.3.10",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dentolos19/wiki-editor.git"
+    "url": "https://github.com/dentolos19/wikiman.git"
   },
   "engines": {
-    "vscode": "^1.103.0"
+    "vscode": "^1.109.0"
   },
   "categories": [
     "Other"
@@ -22,30 +23,30 @@
   "contributes": {
     "commands": [
       {
-        "command": "wiki-editor.openWiki",
-        "category": "Wiki Editor",
+        "command": "wikiman.openWiki",
+        "category": "Wikiman",
         "title": "Open Wiki"
       },
       {
-        "command": "wiki-editor.publishWiki",
-        "category": "Wiki Editor",
+        "command": "wikiman.publishWiki",
+        "category": "Wikiman",
         "title": "Publish Wiki"
       },
       {
-        "command": "wiki-editor.cleanCache",
-        "category": "Wiki Editor",
+        "command": "wikiman.cleanCache",
+        "category": "Wikiman",
         "title": "Clean Cache"
       }
     ],
     "configuration": {
-      "title": "Wiki Editor",
+      "title": "Wikiman",
       "properties": {
-        "wiki-editor.workspace.isWikiWorkspace": {
+        "wikiman.workspace.isWikiWorkspace": {
           "type": "boolean",
           "default": false,
           "description": "Whether the current workspace is a wiki workspace. Do not set manually!"
         },
-        "wiki-editor.workspace.repoFullName": {
+        "wikiman.workspace.repoFullName": {
           "type": "string",
           "default": "",
           "description": "The GitHub repository that the wiki belongs to. Do not set manually!"
@@ -55,7 +56,7 @@
   },
   "scripts": {
     "vscode:prepublish": "esbuild src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode --minify",
-    "pretest": "npm run compile && npm run lint",
+    "pretest": "bun run compile && bun run lint",
     "watch": "tsc -watch -p .",
     "compile": "tsc -p .",
     "lint": "eslint src --ext ts",
@@ -67,15 +68,15 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.11",
-    "@types/vscode": "^1.103.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "@vscode/test-cli": "^0.0.6",
+    "@types/node": "^25.3.3",
+    "@types/vscode": "^1.109.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
-    "@vscode/vsce": "^2.32.0",
-    "esbuild": "^0.20.2",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.3",
     "eslint": "^8.57.1",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }

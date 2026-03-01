@@ -31,7 +31,7 @@ export default async function publishWiki(env: Environment) {
   // Get remote repo's full name
   const remoteRepoFullName = await executeShellCommands(`cd ${wikiPath}`, "git remote -v").then(
     (result) => matchRepoFullName(result),
-    (_) => undefined
+    (_) => undefined,
   );
   if (!remoteRepoFullName) {
     vscode.window.showErrorMessage("Unable to find the remote repo's full name.");
@@ -74,21 +74,23 @@ export default async function publishWiki(env: Environment) {
   }
 
   // Push the changes to the wiki
-  executeTerminalCommands(`cd ${wikiPath}`);
+  const escapedWikiPath = wikiPath.replaceAll('"', '\\"');
+  const escapedCommitMessage = commitMessage.replaceAll('"', '\\"');
+  executeTerminalCommands(`cd "${escapedWikiPath}"`);
   if (orphanCommit) {
     // Push changes as an orphaned commit
     executeTerminalCommands(
       "git checkout --orphan wiki",
       "git add .",
-      `git commit -m "${commitMessage}"`,
+      `git commit -m "${escapedCommitMessage}"`,
       "git branch -D master",
       // `git push origin -D master`,
       "git branch -m master",
-      "git push -f origin master"
+      "git push -f origin master",
     );
   } else {
     // Push changes as a new commit
-    executeTerminalCommands("git add .", `git commit -m "${commitMessage}"`, "git push origin master");
+    executeTerminalCommands("git add .", `git commit -m "${escapedCommitMessage}"`, "git push origin master");
   }
 
   vscode.window.showInformationMessage("Wiki published!", "Open Wiki").then((result) => {

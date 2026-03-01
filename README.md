@@ -1,10 +1,10 @@
 <h1>
   <img src="public/icon.png" alt="Icon" height="30" />
-  <span>Wiki Editor</span>
+  <span>Wikiman</span>
 </h1>
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.wiki-editor?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wiki-editor)
-[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/dentolos19.wiki-editor)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wiki-editor)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/dentolos19.wikiman?logo=visual%20studio&label=marketplace)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wikiman)
+[![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/dentolos19.wikiman)](https://marketplace.visualstudio.com/items?itemName=dentolos19.wikiman)
 
 An easy way to quickly edit wikis locally inside your editor!
 
@@ -12,7 +12,7 @@ An easy way to quickly edit wikis locally inside your editor!
 
 ## ⚒️ Usage
 
-To get started, go check out [the wiki](https://github.com/dentolos19/wiki-editor/wiki) to learn how to use this extension.
+To get started, go check out [the wiki](https://github.com/dentolos19/wikiman/wiki) to learn how to use this extension.
 
 ## ⚙️ Features
 
@@ -36,8 +36,8 @@ Contributions are what make the open source community such an amazing place to l
 
 ### Installation
 
-1. Clone this repository: `git clone https://github.com/dentolos19/wiki-editor.git`
-2. Install dependencies: `npm install`
+1. Clone this repository: `git clone https://github.com/dentolos19/wikiman.git`
+2. Install dependencies: `bun install`
 3. Open the project: `code .`
 4. Run the extension: <kbd>F5</kbd>
 

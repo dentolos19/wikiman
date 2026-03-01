@@ -16,23 +16,25 @@ export default async function openWiki(env: Environment) {
   repos = repos.filter((repo) => {
     return repo.has_wiki && !repo.archived;
   });
+  if (repos.length === 0) {
+    vscode.window.showInformationMessage("No editable wiki repositories were found.");
+    return;
+  }
 
   // Prompt user to select a wiki
   const repo = (
     await vscode.window.showQuickPick(
-      repos.map(
-        (repo) => {
-          return {
-            label: repo.full_name,
-            detail: repo.description,
-            iconPath: new vscode.ThemeIcon("github"),
-            data: repo,
-          };
-        },
-        {
-          placeHolder: "Select a wiki to open...",
-        }
-      )
+      repos.map((repo) => {
+        return {
+          label: repo.full_name,
+          detail: repo.description,
+          iconPath: new vscode.ThemeIcon("github"),
+          data: repo,
+        };
+      }),
+      {
+        placeHolder: "Select a wiki to open...",
+      },
     )
   )?.data;
   if (!repo) {
@@ -48,7 +50,7 @@ export default async function openWiki(env: Environment) {
     const newWorkspace = await vscode.window.showInformationMessage(
       "Wiki workspace already exists. Open a new workspace?",
       "Yes",
-      "No"
+      "No",
     );
     if (newWorkspace !== "Yes") {
       // Opens the existing wiki workspace
@@ -71,13 +73,13 @@ export default async function openWiki(env: Environment) {
         },
       ],
       settings: {
-        "wiki-editor.workspace.isWikiWorkspace": true,
-        "wiki-editor.workspace.repoFullName": `${repo.full_name}.wiki`,
+        "wikiman.workspace.isWikiWorkspace": true,
+        "wikiman.workspace.repoFullName": `${repo.full_name}.wiki`,
       },
       extensions: {
         recommendations: ["DavidAnson.vscode-markdownlint", "bierner.markdown-preview-github-styles"],
       },
-    })
+    }),
   );
 
   // Open wiki workspace

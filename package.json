@@ -57,9 +57,9 @@
   "scripts": {
     "vscode:prepublish": "esbuild src/extension.ts --bundle --outfile=out/extension.js --format=cjs --platform=node --external:vscode --minify",
     "watch": "tsc -watch -p .",
-    "compile": "tsc -p .",
-    "lint": "eslint src --ext ts",
-    "pack": "vsce pack --no-dependencies --out out/extension.vsix"
+    "build": "tsc -p .",
+    "pack": "vsce pack --no-dependencies --out extension.vsix",
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "octokit": "^3.2.2"
@@ -71,7 +71,7 @@
     "@typescript-eslint/parser": "^8.56.1",
     "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.27.3",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.3",
     "typescript": "^5.9.3"
   }
 }

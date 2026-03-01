@@ -1,15 +1,21 @@
+# Editor configurations
+.vs/
+.idea/
+
 # Environment files
 node_modules/
-
-# Output files
-build/
-dist/
 out/
+*.d*
 
-# Output files: VSCode Extension Development
+# User files
+.env*
+!.env*.template
+
+# Project files
 *.vsix
 
 # Miscellaneous files
 .DS_Store
 Desktop.ini
 Thumbs.db
+!.gitkeep
